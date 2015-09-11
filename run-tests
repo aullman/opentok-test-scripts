@@ -49,6 +49,9 @@ export BROWSERBIN=$BROWSERBIN
 
 if [ -f tests/karma.conf.js ]; then
 	PATH=$PATH:./node_modules/.bin
+	# Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
+	BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
+	export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
 	echo "Starting Karma for browser $BROWSER"
 	karma start tests/karma.conf.js --single-run
 	karma=$?
