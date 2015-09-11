@@ -6,8 +6,6 @@
 BINDIR=./browsers/bin
 SCRIPTDIR=$(dirname $0)
 
-echo $SCRIPTDIR
-
 if [ -z $BROWSER ]; then
 	BROWSER="chrome"
 fi
@@ -38,11 +36,11 @@ if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
 fi
 
 if [ -n "$SAUCELABS" ]; then
-	$SCRIPTDIR/sauceconnect/start
+	$SCRIPTDIR/sauceconnect-start
 fi
 
 if [ -n "$BROWSERSTACK" ]; then
-	$SCRIPTDIR/browserstacklocal/start
+	$SCRIPTDIR/browserstacklocal-start
 fi
 
 export BROWSERBIN=$BROWSERBIN
@@ -64,7 +62,7 @@ if [ -f tests/protractor.conf.js ]; then
 	protractor=$?
 fi
 
-$SCRIPTDIR/sauceconnect/stop
-$SCRIPTDIR/browserstacklocal/stop
+$SCRIPTDIR/sauceconnect-stop
+$SCRIPTDIR/browserstacklocal-stop
 
 exit $(( $karma || $protractor ))
