@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+- '0.12'
+before_install:
+- export DISPLAY=:99.0
+- sh -e /etc/init.d/xvfb start
+sudo: false
+matrix:
+  fast_finish: true
+
+  allow_failures:
+    - env: BROWSER=chrome  BVER=beta
+env:
+  matrix:
+    - BROWSER=chrome  BVER=stable
+    - BROWSER=chrome  BVER=beta
+    - BROWSER=firefox BVER=stable BROWSERSTACK=true
+    - BROWSER=ie BVER=11  SAUCELABS=true
+    - BROWSER=ie BVER=10  SAUCELABS=true
+  global:
+  - TRAVIS=true
