@@ -1,6 +1,6 @@
 {
   "name": "opentok-test-scripts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Testing scripts for OpenTok applications",
   "main": "run-tests",
   "directories": {
@@ -8,6 +8,9 @@
   },
   "scripts": {
     "test": "./run-tests"
+  },
+  "bin": {
+    "run-tests": "./run-tests"
   },
   "repository": {
     "type": "git",
