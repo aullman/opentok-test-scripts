@@ -1,0 +1,35 @@
+{
+  "name": "opentok-test-scripts",
+  "version": "1.0.0",
+  "description": "Testing scripts for OpenTok applications",
+  "main": "run-tests",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "./run-tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aullman/opentok-test-scripts.git"
+  },
+  "keywords": [
+    "karma",
+    "protractor",
+    "travis",
+    "opentok",
+    "webrtc",
+    "saucelabs",
+    "browserstack",
+    "webdriver"
+  ],
+  "author": "Adam Ullman <adam@tokbox.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aullman/opentok-test-scripts/issues"
+  },
+  "homepage": "https://github.com/aullman/opentok-test-scripts#readme",
+  "dependencies": {
+    "travis-multirunner": "^2.7.2"
+  }
+}
