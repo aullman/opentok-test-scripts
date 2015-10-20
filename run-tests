@@ -3,7 +3,7 @@
 # Installs Chrome or Firefox if missing, starts Browserstack Local or Sauce Connect if needed
 # and runs Karma and Protractor tests
 #
-BINDIR=./browsers/bin
+BINDIR=$PWD/browsers/bin
 SCRIPTDIR=$(dirname $0)
 
 if [ -z $BROWSER ]; then
