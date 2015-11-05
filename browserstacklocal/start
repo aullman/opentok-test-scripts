@@ -6,5 +6,5 @@ if [ ! -x ./BrowserStackLocal ]; then
   unzip BrowserStackLocal-linux-x64.zip
 fi
 ./BrowserStackLocal $BROWSERSTACK_KEY localhost,8001,0 > /dev/null &
-echo $! > ./tests/scripts/browserstack-local-$TRAVIS_JOB_NUMBER.pid
+echo $! > browserstack-local-$TRAVIS_JOB_NUMBER.pid
 sleep 10

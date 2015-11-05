@@ -1,5 +1,5 @@
 #!/bin/bash
-PIDPATH=./tests/scripts/browserstack-local-$TRAVIS_JOB_NUMBER.pid
+PIDPATH=browserstack-local-$TRAVIS_JOB_NUMBER.pid
 
 if [ -f $PIDPATH ]; then
 	b_pid=`cat $PIDPATH`
