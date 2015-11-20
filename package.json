@@ -37,6 +37,6 @@
   },
   "homepage": "https://github.com/aullman/opentok-test-scripts#readme",
   "dependencies": {
-    "travis-multirunner": "^2.7.2"
+    "travis-multirunner": "^3.0.0"
   }
 }
