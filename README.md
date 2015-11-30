@@ -7,4 +7,4 @@ The [run-tests](run-tests) script uses travis-multirunner to install Chrome and 
 
 There are some [examples of karma and protractor configuration files](tests/) included.
 
-Then you can setup your `.travis.yml` file to look something like [`.travis-template.yml`](.travis-template.yml) and it will run the tests for every combination in your build matrix.
+Then you can setup your `.travis.yml` file to look something like the [`.travis.yml`](.travis.yml) in this repo and it will run the tests for every combination in your build matrix.
