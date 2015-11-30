@@ -1,20 +1,23 @@
 {
   "name": "opentok-test-scripts",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "Testing scripts for OpenTok applications",
   "main": "run-tests",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "./run-tests"
+    "test": "./run-tests",
+    "start": "http-server -p 5000",
+    "unit": "karma start tests/karma.conf.js --single-run",
+    "integration": "webdriver-manager update && protractor tests/protractor.conf.js"
   },
   "bin": {
     "run-tests": "./run-tests",
-    "sauceconnect-start": "./sauceconnect/start",
-    "sauceconnect-stop": "./sauceconnect/stop",
-    "browserstacklocal-start": "./browserstacklocal/start",
-    "browserstacklocal-stop": "./browserstacklocal/stop"
+    "sauceconnect-start": "./sauceconnect-start",
+    "sauceconnect-stop": "./sauceconnect-stop",
+    "browserstacklocal-start": "./browserstacklocal-start",
+    "browserstacklocal-stop": "./browserstacklocal-stop"
   },
   "repository": {
     "type": "git",
@@ -38,5 +41,17 @@
   "homepage": "https://github.com/aullman/opentok-test-scripts#readme",
   "dependencies": {
     "travis-multirunner": "^3.0.0"
+  },
+  "devDependencies": {
+    "firefox-profile": "^0.3.11",
+    "http-server": "^0.8.5",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.1",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-jasmine": "^0.3.6",
+    "karma-sauce-launcher": "^0.3.0",
+    "protractor": "^3.0.0",
+    "q": "^1.4.1"
   }
 }

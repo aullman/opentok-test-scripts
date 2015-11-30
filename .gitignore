@@ -1,1 +1,5 @@
 /node_modules
+/BrowserStackLocal
+/sc-4.3.11-*
+/sauce-connect.log
+/browserstack-local-saucey.pid

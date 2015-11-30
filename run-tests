@@ -44,27 +44,25 @@ if [ -n "$BROWSERSTACK" ]; then
 fi
 
 export BROWSERBIN=$BROWSERBIN
+# Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
+BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
+export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
 
-karma=0
-if [ -f tests/karma.conf.js ]; then
-	PATH=$PATH:./node_modules/.bin
-	# Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
-	BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
-	export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
-	echo "Starting Karma for browser $BROWSER"
-	karma start tests/karma.conf.js --single-run
-	karma=$?
+unit=0
+if [ -n "$UNIT_CMD" ]; then
+	echo "Starting Unit Test Command: $UNIT_CMD for $BROWSER"
+	$UNIT_CMD
+	unit=$?
 fi
 
-protractor=0
-if [ -f tests/protractor.conf.js ]; then
-	webdriver-manager update
-	echo "Running Protractor tests"
-	protractor tests/protractor.conf.js
-	protractor=$?
+integration=0
+if [ -n "$INTEGRATION_CMD" ]; then
+	echo "Running Integration Test Command: $INTEGRATION_CMD for $BROWSER"
+	$INTEGRATION_CMD
+	integration=$?
 fi
 
 $SCRIPTDIR/sauceconnect-stop
 $SCRIPTDIR/browserstacklocal-stop
 
-exit $(( $karma || $protractor ))
+exit $(( $unit || $integration ))
