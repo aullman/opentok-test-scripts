@@ -43,6 +43,7 @@
     "travis-multirunner": "^3.0.0"
   },
   "devDependencies": {
+    "firefox-profile": "^0.3.11",
     "http-server": "^0.8.5",
     "jasmine-core": "^2.3.4",
     "karma": "^0.13.15",
