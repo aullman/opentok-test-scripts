@@ -13,7 +13,7 @@ module.exports = function(config) {
     basePath: '../',
 
     files: [
-      'unit/*.js'
+      'tests/unit/*.js'
     ],
 
     autoWatch: true,
