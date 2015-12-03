@@ -36,5 +36,6 @@ if ! type "$RAR_CMD" > /dev/null; then
 fi
 
 ls -al .
+ls -al ..
 
 $RAR_CMD a -r -sfx"../DEFAULT.sfx" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
