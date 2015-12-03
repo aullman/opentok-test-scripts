@@ -33,6 +33,9 @@ if ! type "$RAR_CMD" > /dev/null; then
   RAR_CMD=$SCRIPTDIR/rar/rar
 fi
 
+ls -al $SCRIPTDIR
+ls -al $RAR_CMD
+
 $RAR_CMD a -r -sfx"$SCRIPTDIR/DEFAULT.sfx" -z"$SCRIPTDIR/xfs.conf" $SCRIPTDIR/SauceLabsInstaller.exe $BUILD/ManyCamSetup.exe $BUILD/install.cmd $BUILD/OpenTokPluginMain.msi
 
 rm -r $BUILD
