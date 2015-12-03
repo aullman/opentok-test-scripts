@@ -5,8 +5,8 @@ function getCapabilitiesFor(browserName, version) {
       process.env.TRAVIS_PULL_REQUEST,
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'prerun': {
-      'executable': 'http://dl.dropboxusercontent.com/u/21519477/OpenTokManyCamInstaller2.EXE',
-      'background': true,
+      'executable': 'http://localhost:5000/plugin-installer/SauceLabsInstaller.exe',
+      'background': false,
       'timeout': 120
     }
   };
