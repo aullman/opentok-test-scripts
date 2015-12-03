@@ -25,17 +25,16 @@ echo '@ManyCamSetup.exe /S' >> $BUILD/install.cmd
 
 cp $SCRIPTDIR/ManyCamSetup.exe $BUILD/
 
+cd $BUILD
+
 RAR_CMD=rar
 if ! type "$RAR_CMD" > /dev/null; then
   echo "installing WinRAR"
-  curl http://www.rarlab.com/rar/rarlinux-5.3.0.tar.gz > $SCRIPTDIR/rarlinux-5.3.0.tar.gz
-  tar -zxvf $SCRIPTDIR/rarlinux-5.3.0.tar.gz -C $SCRIPTDIR/
-  RAR_CMD=$SCRIPTDIR/rar/rar
+  curl http://www.rarlab.com/rar/rarosx-5.3.0.tar.gz > ./rarlinux-5.3.0.tar.gz
+  tar -zxvf ./rarlinux-5.3.0.tar.gz
+  RAR_CMD=./rar/rar
 fi
 
-ls -al $SCRIPTDIR
-ls -al $RAR_CMD
+ls -al .
 
-$RAR_CMD a -r -sfx"$SCRIPTDIR/DEFAULT.sfx" -z"$SCRIPTDIR/xfs.conf" $SCRIPTDIR/SauceLabsInstaller.exe $BUILD/ManyCamSetup.exe $BUILD/install.cmd $BUILD/OpenTokPluginMain.msi
-
-rm -r $BUILD
+$RAR_CMD a -r -sfx"../DEFAULT.sfx" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
