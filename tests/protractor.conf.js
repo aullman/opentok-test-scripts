@@ -6,7 +6,7 @@ function getCapabilitiesFor(browserName, version) {
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'prerun': {
       'executable': 'http://localhost:5000/plugin-installer/SauceLabsInstaller.exe',
-      'background': false,
+      'background': true,
       'timeout': 120
     }
   };
