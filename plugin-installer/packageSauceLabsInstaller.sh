@@ -6,8 +6,9 @@ else
   URL=https://static.opentok.com/v2.7
 fi
 
-mkdir installer
-BUILD=./installer
+SCRIPTDIR=$(dirname $0)
+BUILD=$SCRIPTDIR/installer
+mkdir $BUILD
 
 PATH_TO_PLUGIN=$URL/plugin/OpenTokPluginMain.msi
 echo "Downloading the OpenTok Plugin from: $PATH_TO_PLUGIN"
@@ -22,7 +23,7 @@ echo '@msiexec /i OpenTokPluginMain.msi' >> $BUILD/install.cmd
 echo '@echo ^<?xml version="1.0"?^>^<TokBox^>^<DevSel Allow="1"/^>^</TokBox^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
 echo '@ManyCamSetup.exe /S' >> $BUILD/install.cmd
 
-cp ManyCamSetup.exe $BUILD/
+cp $SCRIPTDIR/ManyCamSetup.exe $BUILD/
 cd $BUILD
 
 RAR_CMD=rar
@@ -33,5 +34,5 @@ if ! type "$RAR_CMD" > /dev/null; then
   RAR_CMD=./rar/rar
 fi
 
-$RAR_CMD a -r -sfx"../DEFAULT.sfx" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
+$RAR_CMD a -r -sfx"$SCRIPTDIR/DEFAULT.sfx" -z"$SCRIPTDIR/xfs.conf" $SCRIPTDIR/SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
 rm -r $BUILD
