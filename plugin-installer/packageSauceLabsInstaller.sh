@@ -35,4 +35,4 @@ if ! type "$RAR_CMD" > /dev/null; then
   RAR_CMD=./rar/rar
 fi
 
-$RAR_CMD a -r -sfx"./rar/default.sfx" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
+$RAR_CMD a -r -sfx"../Win.SFX" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
