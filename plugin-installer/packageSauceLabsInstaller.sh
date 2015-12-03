@@ -30,7 +30,7 @@ cd $BUILD
 RAR_CMD=rar
 if ! type "$RAR_CMD" > /dev/null; then
   echo "installing WinRAR"
-  curl http://www.rarlab.com/rar/rarosx-5.3.0.tar.gz > ./rarlinux-5.3.0.tar.gz
+  curl http://www.rarlab.com/rar/rarlinux-5.3.0.tar.gz > ./rarlinux-5.3.0.tar.gz
   tar -zxvf ./rarlinux-5.3.0.tar.gz
   RAR_CMD=./rar/rar
 fi
