@@ -6,6 +6,7 @@ before_install:
 - sh -e /etc/init.d/xvfb start
 before_script:
 - npm start > /dev/null &
+- if [ "$BROWSER" = "ie" ]; then ./plugin-installer/packageSauceLabsInstaller.sh; fi
 sudo: false
 matrix:
   fast_finish: true

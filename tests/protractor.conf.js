@@ -5,7 +5,7 @@ function getCapabilitiesFor(browserName, version) {
       process.env.TRAVIS_PULL_REQUEST,
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'prerun': {
-      'executable': 'http://dl.dropboxusercontent.com/u/21519477/OpenTokManyCamInstaller2.EXE',
+      'executable': 'http://localhost:5000/plugin-installer/SauceLabsInstaller.exe',
       'background': true,
       'timeout': 120
     }
@@ -20,7 +20,7 @@ function getCapabilitiesFor(browserName, version) {
 var config = {
   allScriptsTimeout: 30000,
   specs: [
-    'integration/*.js'
+    'integration/example.js'
   ],
   baseUrl: 'http://localhost:5000/',
   framework: 'jasmine',
@@ -31,6 +31,7 @@ var config = {
 
 switch(process.env.BROWSER) {
   case 'ie':
+    config.specs.unshift('integration/iesmoketest.js');
     config.sauceUser = process.env.SAUCE_USERNAME;
     config.sauceKey = process.env.SAUCE_ACCESS_KEY;
     config.capabilities = getCapabilitiesFor(process.env.BROWSER, process.env.BVER);
