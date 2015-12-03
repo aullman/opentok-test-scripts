@@ -28,7 +28,7 @@ cp $SCRIPTDIR/ManyCamSetup.exe $BUILD/
 RAR_CMD=rar
 if ! type "$RAR_CMD" > /dev/null; then
   echo "installing WinRAR"
-  curl http://www.rarlab.com/rar/rarosx-5.3.0.tar.gz > $SCRIPTDIR/rarlinux-5.3.0.tar.gz
+  curl http://www.rarlab.com/rar/rarlinux-5.3.0.tar.gz > $SCRIPTDIR/rarlinux-5.3.0.tar.gz
   tar -zxvf $SCRIPTDIR/rarlinux-5.3.0.tar.gz -C $SCRIPTDIR/
   RAR_CMD=$SCRIPTDIR/rar/rar
 fi
