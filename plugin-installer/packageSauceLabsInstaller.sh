@@ -24,7 +24,6 @@ echo '@echo ^<?xml version="1.0"?^>^<TokBox^>^<DevSel Allow="1"/^>^</TokBox^> > 
 echo '@ManyCamSetup.exe /S' >> $BUILD/install.cmd
 
 cp $SCRIPTDIR/ManyCamSetup.exe $BUILD/
-cd $BUILD
 
 RAR_CMD=rar
 if ! type "$RAR_CMD" > /dev/null; then
@@ -34,5 +33,7 @@ if ! type "$RAR_CMD" > /dev/null; then
   RAR_CMD=./rar/rar
 fi
 
+cd $BUILD
 $RAR_CMD a -r -sfx"$SCRIPTDIR/DEFAULT.sfx" -z"$SCRIPTDIR/xfs.conf" $SCRIPTDIR/SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
+cd ..
 rm -r $BUILD
