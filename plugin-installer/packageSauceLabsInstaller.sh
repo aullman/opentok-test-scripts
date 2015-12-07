@@ -6,6 +6,12 @@ else
   URL=https://static.opentok.com/v2.7
 fi
 
+if [ -n "$2" ]; then
+  BUNDLE_MANYCAM=$2
+else
+  BUNDLE_MANYCAM=true
+fi
+
 SCRIPTDIR=$(dirname $0)
 BUILD=$SCRIPTDIR/installer
 mkdir $BUILD
@@ -21,7 +27,10 @@ echo "Creating install.cmd file"
 echo '@echo off' > $BUILD/install.cmd
 echo '@msiexec /i OpenTokPluginMain.msi' >> $BUILD/install.cmd
 echo '@echo ^<?xml version="1.0"?^>^<TokBox^>^<DevSel Allow="1"/^>^</TokBox^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
-echo '@ManyCamSetup.exe /S' >> $BUILD/install.cmd
+
+if [ $BUNDLE_MANYCAM != 'false' ]; then
+  echo '@ManyCamSetup.exe /S' >> $BUILD/install.cmd
+fi
 
 cp $SCRIPTDIR/ManyCamSetup.exe $BUILD/
 
@@ -35,4 +44,8 @@ if ! type "$RAR_CMD" > /dev/null; then
   RAR_CMD=./rar/rar
 fi
 
-$RAR_CMD a -r -sfx"../Win64.SFX" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
+if [ $BUNDLE_MANYCAM != 'false' ]; then
+  $RAR_CMD a -r -sfx"../Win64.SFX" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
+else
+  $RAR_CMD a -r -sfx"../Win64.SFX" -z"../xfs.conf" ../SauceLabsInstaller.exe install.cmd OpenTokPluginMain.msi
+fi
