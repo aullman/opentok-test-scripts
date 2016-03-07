@@ -3,20 +3,20 @@
 if [ -n "$1" ]; then
   URL=$1
 else
-  URL=https://static.opentok.com/v2.7
+  URL=https://tbdev.tokbox.com/v2
 fi
 
 if [ -n "$2" ]; then
-  BUNDLE_MANYCAM=$2
+  FAKE_DEVICES=$2
 else
-  BUNDLE_MANYCAM=true
+  FAKE_DEVICES=true
 fi
 
 SCRIPTDIR=$(dirname $0)
 BUILD=$SCRIPTDIR/installer
 mkdir $BUILD
 
-PATH_TO_PLUGIN=$URL/plugin/OpenTokPluginMain.msi
+PATH_TO_PLUGIN=$URL/plugin/OpenTokPluginMain_x32.msi
 echo "Downloading the OpenTok Plugin from: $PATH_TO_PLUGIN"
 curl $PATH_TO_PLUGIN > $BUILD/OpenTokPluginMain.msi
 
@@ -26,13 +26,12 @@ echo "Plugin version is $VERSION"
 echo "Creating install.cmd file"
 echo '@echo off' > $BUILD/install.cmd
 echo '@msiexec /i OpenTokPluginMain.msi' >> $BUILD/install.cmd
-echo '@echo ^<?xml version="1.0"?^>^<TokBox^>^<DevSel Allow="1"/^>^</TokBox^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
 
-if [ $BUNDLE_MANYCAM != 'false' ]; then
-  echo '@ManyCamSetup.exe /S' >> $BUILD/install.cmd
+if [ $FAKE_DEVICES != 'false' ]; then
+  echo '@echo ^<?xml version="1.0"?^>^<OpenTokPlugin^>^<DevSel AlwaysAllow="1" FakeDevices="0"/^>^</OpenTokPlugin^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
+else
+  echo '@echo ^<?xml version="1.0"?^>^<OpenTokPlugin^>^<DevSel AlwaysAllow="1" FakeDevices="1"/^>^</OpenTokPlugin^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
 fi
-
-cp $SCRIPTDIR/ManyCamSetup.exe $BUILD/
 
 cd $BUILD
 
@@ -44,8 +43,4 @@ if ! type "$RAR_CMD" > /dev/null; then
   RAR_CMD=./rar/rar
 fi
 
-if [ $BUNDLE_MANYCAM != 'false' ]; then
-  $RAR_CMD a -r -sfx"../Win64.SFX" -z"../xfs.conf" ../SauceLabsInstaller.exe ManyCamSetup.exe install.cmd OpenTokPluginMain.msi
-else
-  $RAR_CMD a -r -sfx"../Win64.SFX" -z"../xfs.conf" ../SauceLabsInstaller.exe install.cmd OpenTokPluginMain.msi
-fi
+$RAR_CMD a -r -sfx"../Win64.SFX" -z"../xfs.conf" ../SauceLabsInstaller.exe install.cmd OpenTokPluginMain.msi
