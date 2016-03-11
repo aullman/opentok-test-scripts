@@ -6,7 +6,7 @@ function getCapabilitiesFor(browserName, version) {
     'build': process.env.TRAVIS_BUILD_NUMBER,
     'prerun': {
       'executable': 'http://localhost:5000/plugin-installer/SauceLabsInstaller.exe',
-      'background': true,
+      'background': false,
       'timeout': 120
     }
   };
@@ -31,7 +31,6 @@ var config = {
 
 switch(process.env.BROWSER) {
   case 'ie':
-    config.specs.unshift('integration/iesmoketest.js');
     config.sauceUser = process.env.SAUCE_USERNAME;
     config.sauceKey = process.env.SAUCE_ACCESS_KEY;
     config.capabilities = getCapabilitiesFor(process.env.BROWSER, process.env.BVER);
