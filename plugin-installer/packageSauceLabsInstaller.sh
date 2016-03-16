@@ -30,7 +30,7 @@ echo '@msiexec /i OpenTokPluginMain.msi' >> $BUILD/install.cmd
 if [ $FAKE_DEVICES != 'false' ]; then
   echo '@echo ^<?xml version="1.0"?^>^<OpenTokPlugin^>^<DevSel AlwaysAllow="1" FakeDevices="0"/^>^</OpenTokPlugin^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
 else
-  echo '@echo ^<?xml version="1.0"?^>^<OpenTokPlugin^>^<DevSel AlwaysAllow="1" FakeDevices="1"/^>^</OpenTokPlugin^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
+  echo '@echo ^<?xml version="1.0"?^>^<OpenTokPlugin^>^<DevSel AlwaysAllow="0" FakeDevices="1"/^>^</OpenTokPlugin^> > %appdata%\TokBox\OpenTokPluginMain\'$VERSION'\Config\OTConfig.xml' >> $BUILD/install.cmd
 fi
 
 cd $BUILD
