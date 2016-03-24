@@ -51,14 +51,14 @@ export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
 unit=0
 if [ -n "$UNIT_CMD" ]; then
 	echo "Starting Unit Test Command: $UNIT_CMD for $BROWSER"
-	$UNIT_CMD
+	eval $UNIT_CMD
 	unit=$?
 fi
 
 integration=0
 if [ -n "$INTEGRATION_CMD" ]; then
 	echo "Running Integration Test Command: $INTEGRATION_CMD for $BROWSER"
-	$INTEGRATION_CMD
+	eval $INTEGRATION_CMD
 	integration=$?
 fi
 
