@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aullman/opentok-test-scripts.svg?branch=master)](https://travis-ci.org/aullman/opentok-test-scripts)
+
 OpenTok Test Scripts
 =====
 
