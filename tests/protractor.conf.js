@@ -11,7 +11,7 @@ function getCapabilitiesFor(browserName, version) {
     }
   };
   // Sauce Labs Supports IE 10 on Windows 8 and IE 11 on Windows 8.1
-  base.platform = version === '10' ? 'Windows 8' : 'Windows 8.1';
+  base.platform = version === '10' ? 'Windows 8' : 'Windows 10';
   base.browserName = browserName === 'ie' ? 'internet explorer' : browserName;
   base.version = version;
   return base;
