@@ -10,7 +10,7 @@ describe('Example Test', function() {
     it('loads the video', function() {
       browser.wait(function() {
         return element(by.css('.OT_publisher:not(.OT_loading)')).isPresent();
-      }, 10000);
+      }, 60000);
     });
   });
 });
