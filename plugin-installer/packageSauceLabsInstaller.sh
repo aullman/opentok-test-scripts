@@ -3,7 +3,7 @@
 if [ -n "$1" ]; then
   URL=$1
 else
-  URL=https://tbdev.tokbox.com/v2
+  URL=https://static.opentok.com/v2
 fi
 
 if [ -n "$2" ]; then
