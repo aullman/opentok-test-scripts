@@ -1,4 +1,9 @@
 #!/bin/bash
+
+if [ ! -n "$TRAVIS_JOB_NUMBER" ]; then
+  TRAVIS_JOB_NUMBER=saucey
+fi
+
 PIDPATH=/tmp/sc_client_$TRAVIS_JOB_NUMBER.pid
 if [ -f $PIDPATH ]; then
 	echo "Shutting down Sauce Connect"

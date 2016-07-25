@@ -1,12 +1,31 @@
 #!/bin/bash
 
 echo "Starting Sauce Connect"
-if [ ! -x ./sc-4.3.11-*/bin/sc ]; then
-  wget http://saucelabs.com/downloads/sc-4.3.11-linux.tar.gz
-  tar -zxvf sc-4.3.11-linux.tar.gz
+
+if [ ! -n "$SAUCE_ACCESS_KEY" ]; then
+  echo "You must set the SAUCE_ACCESS_KEY environment variable"
+  exit 1
 fi
+
+if [ ! -x ./sc-4.3.16-*/bin/sc ]; then
+  case $OSTYPE in
+    darwin*)
+      curl http://saucelabs.com/downloads/sc-4.3.16-osx.zip > sc.zip
+      unzip sc.zip
+      ;;
+    linux*)
+      wget http://saucelabs.com/downloads/sc-4.3.16-linux.tar.gz
+      tar -zxvf sc-4.3.16-linux.tar.gz
+      ;;
+  esac
+fi
+
+if [ ! -n "$TRAVIS_JOB_NUMBER" ]; then
+  TRAVIS_JOB_NUMBER=saucey
+fi
+
 READY_FILE=sauce-connect-ready$RANDOM
-./sc-4.3.11-*/bin/sc -i $TRAVIS_JOB_NUMBER -f $READY_FILE -l sauce-connect.log -B all -t localhost &
+./sc-4.3.16-*/bin/sc -i $TRAVIS_JOB_NUMBER -f $READY_FILE -l sauce-connect.log -B all -t localhost &
 echo "Waiting for Connect to be ready before exiting"
 while [ ! -f $READY_FILE ]; do
   sleep .5

@@ -1,6 +1,8 @@
 /node_modules
 /BrowserStackLocal
-/sc-4.3.11-*
+/sc-4.3.16-*
+/sc.zip
 /sauce-connect.log
 /browserstack-local-saucey.pid
 /plugin-installer/SauceLabsInstaller.exe
+/plugin-installer/installer
