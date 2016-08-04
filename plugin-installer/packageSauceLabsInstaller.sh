@@ -35,11 +35,20 @@ fi
 
 cd $BUILD
 
-RAR_CMD=rar
+if [ -x "./rar/rar" ]; then
+  RAR_CMD=./rar/rar;
+else
+  RAR_CMD=rar
+fi
 if ! type "$RAR_CMD" > /dev/null; then
   echo "installing WinRAR"
-  curl http://www.rarlab.com/rar/rarlinux-x64-5.3.0.tar.gz > ./rarlinux-x64-5.3.0.tar.gz
-  tar -zxvf ./rarlinux-x64-5.3.0.tar.gz
+  RAR_URL="http://www.rarlab.com/rar/rarlinux-x64-5.3.0.tar.gz"
+  case $OSTYPE in
+    darwin*) RAR_URL="http://www.rarlab.com/rar/rarosx-5.3.0.tar.gz";;
+    linux*) ;;
+  esac
+  curl $RAR_URL > ./rar.tar.gz
+  tar -zxvf ./rar.tar.gz
   RAR_CMD=./rar/rar
 fi
 
