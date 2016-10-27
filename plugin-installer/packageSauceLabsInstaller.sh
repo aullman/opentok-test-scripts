@@ -17,6 +17,9 @@ BUILD=$SCRIPTDIR/installer
 mkdir $BUILD
 
 PATH_TO_PLUGIN=$URL/plugin/OpenTokPluginMain_x32.msi
+if [ `curl $PATH_TO_PLUGIN -o /dev/null --silent --head --write-out '%{http_code}'` == '404' ]; then
+  PATH_TO_PLUGIN=$URL/plugin/OpenTokPluginMain.msi
+fi
 echo "Downloading the OpenTok Plugin from: $PATH_TO_PLUGIN"
 curl $PATH_TO_PLUGIN > $BUILD/OpenTokPluginMain.msi
 
