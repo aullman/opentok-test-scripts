@@ -16,7 +16,7 @@ env:
   matrix:
   - BROWSER=chrome  BVER=stable
   - BROWSER=chrome  BVER=beta
-  - BROWSER=firefox BVER=stable
+  - BROWSER=firefox BVER=46.0.1
   - BROWSER=ie BVER=11  SAUCELABS=true
   - BROWSER=ie BVER=10  SAUCELABS=true
   global:

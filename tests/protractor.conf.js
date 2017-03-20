@@ -37,6 +37,8 @@ switch(process.env.BROWSER) {
   case 'firefox':
     var helper = require('./firefox-helper.js');
     config.getMultiCapabilities = helper.getFirefoxProfile;
+    config.directConnect = true;
+    config.firefoxPath = process.env.BROWSERBIN;
   break;
   default:
   case 'chrome':
