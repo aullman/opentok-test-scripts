@@ -37,7 +37,6 @@ switch(process.env.BROWSER) {
   case 'firefox':
     var helper = require('./firefox-helper.js');
     config.getMultiCapabilities = helper.getFirefoxProfile;
-    config.seleniumAddress = 'http://hub.browserstack.com/wd/hub';
   break;
   default:
   case 'chrome':
