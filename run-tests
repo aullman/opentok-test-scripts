@@ -43,6 +43,7 @@ if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
 		  source ./node_modules/travis-multirunner/install-$BROWSER.sh "$TARGET_URL" "$TARGET_PATH"
 		fi
 
+		mkdir -p $BINDIR
 		ln -sf $TARGET_PATH/firefox $BINDIR/firefox-$BVER
 		$BINDIR/firefox-$BVER --version
 	else
