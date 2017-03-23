@@ -36,14 +36,14 @@ if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
 		echo "BVER is a version number so going to install a specific version, this only works for Firefox"
 		TARGET_URL="http://download.cdn.mozilla.net/pub/firefox/releases/$BVER/linux-x86_64/en-US/firefox-$BVER.tar.bz2"
 		TARGET_VERSION=$BVER
-		TARGET_PATH=$PWD/node_modules/travis-multirunner/browsers/$BROWSER/$TARGET_VERSION
+		TARGET_PATH=$PWD/browsers/$BROWSER/$TARGET_VERSION
+		mkdir -p $BINDIR
 
 		if [ ! -d $TARGET_PATH ]; then
 		  echo "getting $BROWSER $TARGET_VERSION from $TARGET_URL"
 		  source ./node_modules/travis-multirunner/install-$BROWSER.sh "$TARGET_URL" "$TARGET_PATH"
 		fi
 
-		mkdir -p $BINDIR
 		ln -sf $TARGET_PATH/firefox $BINDIR/firefox-$BVER
 		$BINDIR/firefox-$BVER --version
 	else
