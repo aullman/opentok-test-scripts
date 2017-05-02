@@ -50,8 +50,8 @@ if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
 		  source ./node_modules/travis-multirunner/install-$BROWSER.sh "$TARGET_URL" "$TARGET_PATH"
 		fi
 
-		ln -sf $TARGET_PATH/firefox $BINDIR/firefox-$BVER
-		$BINDIR/firefox-$BVER --version
+		ln -sf $TARGET_PATH/$BROWSER $BINDIR/$BROWSER-$BVER
+		$BINDIR/$BROWSER-$BVER --version
 	else
 		echo "Installing browser using travis multirunner."
 		./node_modules/travis-multirunner/setup.sh
