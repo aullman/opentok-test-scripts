@@ -21,4 +21,4 @@ OpenTok Requirements
 Specifying versions
 ----
 
-The run-tests script also allows you to specify specific browser versions for Chrome and Firefox. It then pulls the correct browser binary from either the [mozilla ftp site](https://ftp.mozilla.org/pub/firefox/releases/) or [slimjet.com](https://www.slimjet.com/chrome/google-chrome-old-version.php) for Chrome (because unfortunately Google does not provide old versions of Chrome). You must specify a specific version that is available on one of these sites. eg. `BROWSER=chrome BVER=50.0.2661.75` or `BROWSER=firefox BVER=46.0.1`.
+The run-tests script also allows you to specify specific browser versions for Chrome and Firefox. It then pulls the correct browser binary from either the [mozilla ftp site](https://ftp.mozilla.org/pub/firefox/releases/) or [slimjet.com](https://www.slimjet.com/chrome/google-chrome-old-version.php) for Chrome (because unfortunately Google does not provide old versions of Chrome). You must specify a specific version that is available on one of these sites. eg. `BROWSER=chrome BVER=54.0.2840.71` or `BROWSER=firefox BVER=46.0.1`.

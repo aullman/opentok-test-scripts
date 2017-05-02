@@ -17,7 +17,7 @@ env:
   - BROWSER=chrome  BVER=stable
   - BROWSER=chrome  BVER=beta
   - BROWSER=firefox BVER=46.0.1
-  - BROWSER=chrome BVER=50.0.2661.75
+  - BROWSER=chrome BVER=54.0.2840.71
   - BROWSER=ie BVER=11  SAUCELABS=true
   - BROWSER=ie BVER=10  SAUCELABS=true
   global:
