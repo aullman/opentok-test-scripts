@@ -32,9 +32,15 @@ fi
 
 if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
 	 VERSION_REGEX="[0-9]+(\.[0-9]+)*"
-	 if [[ $BVER =~ $VERSION_REGEX ]] && [ $BROWSER == 'firefox' ] ; then
-		echo "BVER is a version number so going to install a specific version, this only works for Firefox"
-		TARGET_URL="http://download.cdn.mozilla.net/pub/firefox/releases/$BVER/linux-x86_64/en-US/firefox-$BVER.tar.bz2"
+	 if [[ $BVER =~ $VERSION_REGEX ]] ; then
+		echo "BVER is a version number so going to install a specific version"
+		if [ $BROWSER == 'firefox' ] ; then
+			TARGET_URL="http://download.cdn.mozilla.net/pub/firefox/releases/$BVER/linux-x86_64/en-US/firefox-$BVER.tar.bz2"
+		elif [ $BROWSER == 'chrome' ] ; then
+			TARGET_URL="http://www.slimjetbrowser.com/chrome/lnx/chrome64_$BVER.deb"
+		else
+			echo "Installing specific versions only works for Chrome or Firefox"
+		fi
 		TARGET_VERSION=$BVER
 		TARGET_PATH=$PWD/browsers/$BROWSER/$TARGET_VERSION
 		mkdir -p $BINDIR
@@ -44,8 +50,8 @@ if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
 		  source ./node_modules/travis-multirunner/install-$BROWSER.sh "$TARGET_URL" "$TARGET_PATH"
 		fi
 
-		ln -sf $TARGET_PATH/firefox $BINDIR/firefox-$BVER
-		$BINDIR/firefox-$BVER --version
+		ln -sf $TARGET_PATH/$BROWSER $BINDIR/$BROWSER-$BVER
+		$BINDIR/$BROWSER-$BVER --version
 	else
 		echo "Installing browser using travis multirunner."
 		./node_modules/travis-multirunner/setup.sh
