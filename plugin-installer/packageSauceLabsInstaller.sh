@@ -45,12 +45,12 @@ else
 fi
 if ! type "$RAR_CMD" > /dev/null; then
   echo "installing WinRAR"
-  RAR_URL="http://www.rarlab.com/rar/rarlinux-x64-5.3.0.tar.gz"
+  RAR_URL="http://www.rarlab.com/rar/rarlinux-x64-5.4.0.tar.gz"
   case $OSTYPE in
-    darwin*) RAR_URL="http://www.rarlab.com/rar/rarosx-5.3.0.tar.gz";;
+    darwin*) RAR_URL="http://www.rarlab.com/rar/rarosx-5.4.0.tar.gz";;
     linux*) ;;
   esac
-  curl $RAR_URL > ./rar.tar.gz
+  curl -L $RAR_URL > ./rar.tar.gz
   tar -zxvf ./rar.tar.gz
   RAR_CMD=./rar/rar
 fi
