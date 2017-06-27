@@ -37,11 +37,6 @@ if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
 	./node_modules/travis-multirunner/setup.sh
 fi
 
-if [[ $BROWSER == 'safari' ]]; then
-	# Call start-safari once to get all the settings in place
-	./node_modules/.bin/start-safari
-fi
-
 if [ -n "$SAUCELABS" ]; then
 	$SCRIPTDIR/sauceconnect-start
 fi
