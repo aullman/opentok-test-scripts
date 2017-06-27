@@ -1,5 +1,8 @@
 describe('example test', function() {
-  it('works', function() {
-    expect(true).toBe(true);
+  it('publishes successfully', function(done) {
+    OT.initPublisher(function(err) {
+      expect(err).toBeFalsy();
+      done();
+    });
   });
 });
