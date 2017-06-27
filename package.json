@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/aullman/opentok-test-scripts#readme",
   "dependencies": {
-    "travis-multirunner": "^3.0.0"
+    "travis-multirunner": "^4.1.0"
   },
   "devDependencies": {
     "firefox-profile": "^0.3.11",
