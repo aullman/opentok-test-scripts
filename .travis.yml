@@ -8,7 +8,6 @@ before_install:
 before_script:
 - npm start > /dev/null &
 - if [ "$BROWSER" = "ie" ]; then ./plugin-installer/packageSauceLabsInstaller.sh https://tbdev.tokbox.com/v2; fi
-- if [ "$BROWSER = "safari" ]; then ./node_modules/.bin/start-safari; fi
 addons:
   apt:
     sources:
