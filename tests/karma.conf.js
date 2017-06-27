@@ -48,6 +48,8 @@ module.exports = function(config) {
 
     customLaunchers: sauceLaunchers,
 
+    hostname: '127.0.0.1',
+
     browsers: [browser],
 
     plugins: [
