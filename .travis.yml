@@ -1,13 +1,18 @@
 language: node_js
 node_js:
-- '4.2'
+- '7'
 before_install:
 - export DISPLAY=:99.0
 - sh -e /etc/init.d/xvfb start
 before_script:
 - npm start > /dev/null &
 - if [ "$BROWSER" = "ie" ]; then ./plugin-installer/packageSauceLabsInstaller.sh; fi
-sudo: false
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
 matrix:
   include:
     - os: linux
@@ -66,6 +71,7 @@ env:
   global:
   - UNIT_CMD='npm run unit'
   - INTEGRATION_CMD='npm run integration'
+  - CXX=g++-4.8
   - secure: V/xx3j4avTpS2+dkf1Ogpk5cAhehHPr1zDGKaywujip9Xpecw3VRnMlOejbaqEHQxMHz+4tSph9I6zVGTnU2Lvlv5WFmp4t6UDGx2AVeXIzKhn7GMkV7eMbrt7ZoP7No/OAm1NNcjTeCIlOXW6tUqY1ubFdDXIu7N7hy/ThmgJI78cA4uW3a8Yl6Bc9nMWqbgvnOtNoa9asjbiL/tlSs18ykJdxa8uh951H+TnnhfE43eH0XiNZqEdEh5OF0v09r9RTEK7Ve9ihXJe8TDKgdD/KXmASB9Vpvf/GHHKYTVcEgQiiOA/biLQm25UCI9iSyxHIp2rI5jBrO83RnLbQWI9gvnfH0G6LWZignsKlw4sdMmqjIatliJaDp5auAbe9gmWV5pNc3wQg3qqfjgF2PyA/acZp58UnRmgYBbRmqYPE7Q8knK8c3rD999L82zl/bWRqHY3uJhtoeeeEo/RpXaf3KWY+YRrGseB2UXrC1AlLiTJC/iE5HSnMw4Tckzl3//H2veE2j0wRzvuuNAYvwFECp6YyJOmgzuO9pwS7/buu/MXSZhdjMIlK22pKWnfWaZZRM96LOHu2mEKRjLR7QqdlbzdKxt+5i1SgmeO7iuxvsBcE0j7KYrlVKH5IUOFozBsLfziOAHMCPTdcrMcD4rJRNq4Z2Y2hu2zjQJ3xIpw8=
   - secure: Lb0wdKnaN/k6xRT1694q7N+oId9ATVuX1hBdRpW8ScQJ1S+6FVV4dCxK1YOLzNm2GW2DQjS5xHvSsksuPhv1KE1fXuqBbAee+XFV9/pU/ZEuMoyvUu770MZEM7QuymNE5yEpNBGuz/dukQLsE/gGLc8mDAHpwS5czSqs/d4O6P9hSwmiywu2xsqfIUS3/DEWYc8Q18JiNzIbbgjujXQl9ENoCdZq2Oxl6hTDkPE07gmEw//XDrZf8vOYcjn0g2SxVCC4x9kuNqCFKimupmUR305rZiiLvOKd6N9q6mJJo2JPK8b3f8ZHXTsheMGd2/RO8VzFnf5uUQhyWGMcxkXqBypItmxMobzf+3UlUbZF9nvWtCRZ4pcLixAhh/mpEB+G5BZMXIzx3HsaTjZa489Y4L+EV4tPbXq8klMJT6Z3oXx3ip1EIj2ZhFZRErYfPOCmiUH03lwOHBP5mpUkizw1rD6NHe4QJ54Sy/EYL2KJ7vG2IDBJamewieORIIaxcVPqy7+xxjPKftSqsz3HMg5UL3Cxs1/FvVgQaPidofvpqv+LHsxPa8AL4TWYN0XfowAUhUpb9bVDppQ/1nfo9W4U6jEA4rSSfv042AvmD2S8hjiV/2z8HqsxkfHkrySHrjqj1Y46kGoPpr5JJy3vm/VhtpaT8fz49f2YSsvcJqi5wZA=
   - secure: pnK8mVY6/4skzIQ7eUMk1dMYd8q+vBvbrKxqJjF1afhyla3B2AXZ0WbYNb4RR6SYcgkWHLTZj2A+dKARMPdSoxkFqqE1wIw0KeWGNL1NpGOmM0Yr2tgB9w9YqSsdE+jwOf+EKnX0MZTNLsw17JTNMcUhepYZ5QMBpKyoH4SNp06/Kg1vnQQgcgB83yqYEpky5js5F1apP7sz7zgh1GaMSHl8w45w1iD97SyrPpfdupCTe/l84yQY5oAR75aKMpoFRKxgaI3Bkk4Hv1+x4LEtRhx1ErNFeGrnM6b8rS0xWZD3qf0HmNtxZ9c8i6zXMtEzux37rwduKS3g2iDJ9dfuWqTytaxm+afS5xJ8cUQ5fhtRiELtLo8Ee/pZQbD87+z+lqiAdVDXin/g3zVvtqL3+X90nKlWGXgMBL68Ky3gux0lEK3JgXZc6NTmkQ9tf4qle42pi4WDSGj+jmJPTCRZjytaLteKhy6pAYwivCYZoiMjD8QyREcB75ou8UGHU6KbKkJKySM8FZtLiVuE+mIQ2ZmEH1IJ7vCp274fWEcYfUSxBpIIXrBRwxr3VMNxSJzakAdhX0mcKvcEyy635ZxXDRHAbv4j9ngdvKJkVOTZc3qdQEDteJ3DQtz/ku1a1Cito4EV1GaVFTRbtyf2ZICPZTsBaZCHZfYG3s+9LtkGgkU=
