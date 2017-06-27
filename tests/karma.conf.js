@@ -4,7 +4,12 @@ module.exports = function(config) {
       base: 'SauceLabs',
       browserName: 'internet explorer',
       platform: process.env.BVER === '10' ? 'Windows 8' : 'Windows 8.1',
-      version: process.env.BVER
+      version: process.env.BVER,
+      prerun: {
+        executable: 'http://localhost:3000/webrtc/SauceLabsInstaller.exe',
+        background: false,
+        timeout: 120,
+      }
     },
     chrome: {
       base: 'Chrome',
