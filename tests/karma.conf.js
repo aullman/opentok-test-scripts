@@ -22,9 +22,6 @@ module.exports = function(config) {
         'media.navigator.streams.fake': true,
         'app.update.enabled': false,
       }
-    },
-    safari: {
-      base: 'Safari'
     }
   };
   var browser;
@@ -47,8 +44,6 @@ module.exports = function(config) {
     frameworks: ['jasmine'],
 
     customLaunchers: sauceLaunchers,
-
-    hostname: '127.0.0.1',
 
     browsers: [browser],
 
