@@ -19,6 +19,7 @@ module.exports = function(config) {
       base: 'Firefox',
       prefs: {
         'media.navigator.permission.disabled': true,
+        'media.navigator.streams.fake': true,
         'app.update.enabled': false,
       }
     },
