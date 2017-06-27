@@ -1,3 +1,5 @@
+jasmine.DEFAULT_TIMEOUT_INTERVAL = 60000;
+
 describe('Example Test', function() {
   beforeEach(function() {
     browser.ignoreSynchronization = true;
