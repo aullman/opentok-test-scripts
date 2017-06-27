@@ -6,7 +6,7 @@ module.exports = function(config) {
       platform: process.env.BVER === '10' ? 'Windows 8' : 'Windows 8.1',
       version: process.env.BVER,
       prerun: {
-        executable: 'http://localhost:3000/webrtc/SauceLabsInstaller.exe',
+        executable: 'http://localhost:5000/plugin-installer/SauceLabsInstaller.exe',
         background: false,
         timeout: 120,
       }
