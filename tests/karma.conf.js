@@ -31,7 +31,7 @@ module.exports = function(config) {
     browser = process.env.BROWSER || 'chrome';
   }
   config.set({
-
+    hostname: '127.0.0.1',
     basePath: '../',
 
     files: [
