@@ -9,7 +9,7 @@
   "scripts": {
     "test": "./run-tests",
     "start": "http-server -p 5000",
-    "unit": "karma start tests/karma.conf.js & curl https://raw.githubusercontent.com/tremby/imgur.sh/master/imgur.sh > imgur.sh;chmod u+x imgur.sh;screencapture screen.png;./imgur.sh screen.png;sleep 1;screencapture screen.png;./imgur.sh screen.png;sleep 1;screencapture screen.png;./imgur.sh screen.png",
+    "unit": "karma start tests/karma.conf.js & curl https://raw.githubusercontent.com/tremby/imgur.sh/master/imgur.sh > imgur.sh;chmod u+x imgur.sh;screencapture screen.png;./imgur.sh screen.png;sleep 1;screencapture screen.png;./imgur.sh screen.png;sleep 1;screencapture screen.png;./imgur.sh screen.png;sleep 1;screencapture screen.png;./imgur.sh screen.png",
     "integration": "webdriver-manager update && protractor-flake -- tests/protractor.conf.js"
   },
   "bin": {
