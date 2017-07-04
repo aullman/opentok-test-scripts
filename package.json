@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/aullman/opentok-test-scripts#readme",
   "dependencies": {
-    "travis-multirunner": "aullman/travis-multirunner#safari-updates"
+    "travis-multirunner": "aullman/travis-multirunner#install-manycam"
   },
   "devDependencies": {
     "firefox-profile": "^0.3.11",
