@@ -37,9 +37,6 @@ matrix:
     osx_image: xcode8.3
     env: BROWSER=safari BVER=stable INTEGRATION_CMD=''
 
-after_failure:
-  - if [ "$BROWSER" = "safari" ]; then curl https://raw.githubusercontent.com/tremby/imgur.sh/master/imgur.sh > imgur.sh;chmod u+x imgur.sh;screencapture screen.png;./imgur.sh screen.png; fi
-
 env:
   global:
   - UNIT_CMD='npm run unit'
