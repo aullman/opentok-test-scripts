@@ -18,6 +18,44 @@ addons:
       - pulseaudio
 matrix:
   include:
+    - os: linux
+      sudo: false
+      env: BROWSER=chrome  BVER=stable
+    - os: linux
+      sudo: false
+      env: BROWSER=chrome  BVER=beta
+    - os: linux
+      sudo: false
+      env: BROWSER=chrome  BVER=unstable
+    - os: linux
+      sudo: false
+      env: BROWSER=chrome BVER=54.0.2840.71
+    - os: linux
+      sudo: false
+      dist: trusty
+      env: BROWSER=firefox BVER=stable INTEGRATION_CMD=''
+    - os: linux
+      sudo: false
+      dist: trusty
+      env: BROWSER=firefox BVER=beta INTEGRATION_CMD=''
+    - os: linux
+      sudo: false
+      dist: trusty
+      env: BROWSER=firefox BVER=unstable INTEGRATION_CMD=''
+    - os: linux
+      sudo: false
+      dist: trusty
+      env: BROWSER=firefox BVER=46.0.1
+    - os: linux
+      sudo: false
+      env: BROWSER=ie BVER=11 SAUCELABS=true
+    - os: linux
+      sudo: false
+      env: BROWSER=ie BVER=10 SAUCELABS=true
+    - os: osx
+      sudo: required
+      osx_image: xcode8.3
+      env: BROWSER=safari BVER=stable INTEGRATION_CMD=''
     - os: osx
       sudo: required
       osx_image: xcode8.3
