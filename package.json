@@ -10,7 +10,7 @@
     "test": "./run-tests",
     "start": "http-server -p 5000",
     "unit": "karma start tests/karma.conf.js --single-run",
-    "integration": "webdriver-manager update && protractor tests/protractor.conf.js"
+    "integration": "webdriver-manager update && protractor-flake -- tests/protractor.conf.js"
   },
   "bin": {
     "run-tests": "./run-tests",
@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/aullman/opentok-test-scripts#readme",
   "dependencies": {
-    "travis-multirunner": "^3.0.0"
+    "travis-multirunner": "^4.2.0"
   },
   "devDependencies": {
     "firefox-profile": "^0.3.11",
@@ -50,8 +50,11 @@
     "karma-chrome-launcher": "^0.2.1",
     "karma-firefox-launcher": "^0.1.7",
     "karma-jasmine": "^0.3.6",
+    "karma-safari-launcher": "^1.0.0",
+    "karma-safaritechpreview-launcher": "0.0.6",
     "karma-sauce-launcher": "^0.3.0",
     "protractor": "^4.0.9",
+    "protractor-flake": "^2.5.1",
     "q": "^1.4.1"
   }
 }
