@@ -27,7 +27,7 @@ module.exports = function(config) {
       base: 'SauceLabs',
       browserName: 'MicrosoftEdge',
       platform: 'Windows 10',
-      version: '15.15063',
+      version: process.env.BVER,
       prerun: {
         executable: 'http://localhost:5000/edge-setup/EdgeSetup.exe',
         background: true,

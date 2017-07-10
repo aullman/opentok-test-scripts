@@ -61,6 +61,9 @@ matrix:
       sudo: required
       osx_image: xcode8.3
       env: BROWSER=safari BVER=unstable INTEGRATION_CMD=''
+    - os: linux
+      sudo: false
+      env: BROWSER=edge BVER='15.15063' SAUCELABS=true
 
   fast_finish: true
 
