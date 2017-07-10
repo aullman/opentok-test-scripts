@@ -32,7 +32,7 @@ if [ ! -n "$BROWSERBIN" ]; then
 	fi
 fi
 
-if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
+if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ] && [ ! -n "$SAUCELABS" ] && [ ! -n "$BROWSERSTACK" ]; then
 	echo "Installing browser using travis multirunner."
 	./node_modules/travis-multirunner/setup.sh
 fi
