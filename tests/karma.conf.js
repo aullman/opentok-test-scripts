@@ -13,14 +13,32 @@ module.exports = function(config) {
     },
     chromeAndroid: {
       base: 'SauceLabs',
-      appiumVersion: '1.6.4',
+      appiumVersion: '1.6.5',
       deviceName: 'Android GoogleAPI Emulator',
       deviceOrientation: 'portrait',
       browserName: 'Chrome',
       platformVersion: '7.1',
       platformName: 'Android',
       chromeOptions: {
-        args: ['use-fake-ui-for-media-stream', 'use-fake-device-for-media-stream']
+        args: [
+          "--disable-web-security",
+          "--start-maximized",
+          "--disable-web-security",
+          "--disable-webgl",
+          "--blacklist-webgl",
+          "--blacklist-accelerated-compositing",
+          "--disable-accelerated-2d-canvas",
+          "--disable-accelerated-compositing",
+          "--disable-accelerated-layers",
+          "--disable-accelerated-plugins",
+          "--disable-accelerated-video",
+          "--disable-accelerated-video-decode",
+          "--disable-gpu",
+          "--disable-infobars",
+          "--test-type",
+          '--use-fake-ui-for-media-stream',
+          '--use-fake-device-for-media-stream'
+        ]
       }
     },
     chrome: {

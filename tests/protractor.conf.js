@@ -44,8 +44,25 @@ switch(process.env.BROWSER) {
   case 'chrome':
     config.capabilities = {
       chromeOptions: {
-        'args': ['use-fake-device-for-media-stream',
-          'use-fake-ui-for-media-stream'],
+        'args': [
+          "--disable-web-security",
+          "--start-maximized",
+          "--disable-web-security",
+          "--disable-webgl",
+          "--blacklist-webgl",
+          "--blacklist-accelerated-compositing",
+          "--disable-accelerated-2d-canvas",
+          "--disable-accelerated-compositing",
+          "--disable-accelerated-layers",
+          "--disable-accelerated-plugins",
+          "--disable-accelerated-video",
+          "--disable-accelerated-video-decode",
+          "--disable-gpu",
+          "--disable-infobars",
+          "--test-type",
+          '--use-fake-device-for-media-stream',
+          '--use-fake-ui-for-media-stream'
+        ],
       }
     };
     if (process.env.PLATFORM === 'Android') {
@@ -53,7 +70,7 @@ switch(process.env.BROWSER) {
       config.sauceKey = process.env.SAUCE_ACCESS_KEY;
       config.capabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER,
       config.capabilities.browserName = 'Chrome';
-      config.capabilities.appiumVersion = '1.6.4';
+      config.capabilities.appiumVersion = '1.6.5';
       config.capabilities.deviceName = 'Android GoogleAPI Emulator';
       config.capabilities.deviceOrientation = 'portrait';
       config.capabilities.platformVersion = '7.1';
