@@ -53,6 +53,9 @@ matrix:
       sudo: required
       osx_image: xcode9
       env: BROWSER=safari BVER=unstable INTEGRATION_CMD=''
+    - os: linux
+      sudo: false
+      env: BROWSER=chrome PLATFORM=Android SAUCELABS=true
 
   fast_finish: true
 

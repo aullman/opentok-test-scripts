@@ -43,15 +43,43 @@ switch(process.env.BROWSER) {
   default:
   case 'chrome':
     config.capabilities = {
-        'browserName': 'chrome',
-        'chromeOptions': {
-          'args': ['auto-select-desktop-capture-source="Entire screen"',
-            'use-fake-device-for-media-stream',
-            'use-fake-ui-for-media-stream'],
-          'binary': process.env.BROWSERBIN
-        }
-      };
-    config.directConnect = true;
+      chromeOptions: {
+        'args': [
+          "--disable-web-security",
+          "--start-maximized",
+          "--disable-web-security",
+          "--disable-webgl",
+          "--blacklist-webgl",
+          "--blacklist-accelerated-compositing",
+          "--disable-accelerated-2d-canvas",
+          "--disable-accelerated-compositing",
+          "--disable-accelerated-layers",
+          "--disable-accelerated-plugins",
+          "--disable-accelerated-video",
+          "--disable-accelerated-video-decode",
+          "--disable-gpu",
+          "--disable-infobars",
+          "--test-type",
+          '--use-fake-device-for-media-stream',
+          '--use-fake-ui-for-media-stream'
+        ],
+      }
+    };
+    if (process.env.PLATFORM === 'Android') {
+      config.sauceUser = process.env.SAUCE_USERNAME;
+      config.sauceKey = process.env.SAUCE_ACCESS_KEY;
+      config.capabilities['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER,
+      config.capabilities.browserName = 'Chrome';
+      config.capabilities.appiumVersion = '1.6.5';
+      config.capabilities.deviceName = 'Android GoogleAPI Emulator';
+      config.capabilities.deviceOrientation = 'portrait';
+      config.capabilities.platformVersion = '7.1';
+      config.capabilities.platformName = 'Android';
+    } else {
+      config.capabilities.browserName = 'chrome';
+      config.capabilities.binary = process.env.BROWSERBIN;
+      config.directConnect = true;
+    }
   break;
 }
 exports.config = config;

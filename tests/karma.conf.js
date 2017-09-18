@@ -11,6 +11,36 @@ module.exports = function(config) {
         timeout: 120,
       }
     },
+    chromeAndroid: {
+      base: 'SauceLabs',
+      appiumVersion: '1.6.5',
+      deviceName: 'Android GoogleAPI Emulator',
+      deviceOrientation: 'portrait',
+      browserName: 'Chrome',
+      platformVersion: '7.1',
+      platformName: 'Android',
+      chromeOptions: {
+        args: [
+          "--disable-web-security",
+          "--start-maximized",
+          "--disable-web-security",
+          "--disable-webgl",
+          "--blacklist-webgl",
+          "--blacklist-accelerated-compositing",
+          "--disable-accelerated-2d-canvas",
+          "--disable-accelerated-compositing",
+          "--disable-accelerated-layers",
+          "--disable-accelerated-plugins",
+          "--disable-accelerated-video",
+          "--disable-accelerated-video-decode",
+          "--disable-gpu",
+          "--disable-infobars",
+          "--test-type",
+          '--use-fake-ui-for-media-stream',
+          '--use-fake-device-for-media-stream'
+        ]
+      }
+    },
     chrome: {
       base: 'Chrome',
       flags: ['--use-fake-ui-for-media-stream', '--use-fake-device-for-media-stream']
@@ -27,6 +57,8 @@ module.exports = function(config) {
   var browser;
   if (process.env.BROWSER === 'safari') {
     browser = process.env.BVER === 'unstable' ? 'SafariTechPreview' : 'Safari'
+  } else if (process.env.PLATFORM) {
+    browser = process.env.BROWSER + process.env.PLATFORM || 'chromeAndroid';
   } else {
     browser = process.env.BROWSER || 'chrome';
   }
