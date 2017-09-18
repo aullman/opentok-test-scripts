@@ -32,7 +32,7 @@ if [ ! -n "$BROWSERBIN" ]; then
 	fi
 fi
 
-if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ]; then
+if [ -n "$BROWSERBIN" ] && [ ! -x "$BROWSERBIN" ]; then
 	echo "Installing browser using travis multirunner."
 	./node_modules/travis-multirunner/setup.sh
 fi
@@ -45,7 +45,7 @@ if [ -n "$BROWSERSTACK" ]; then
 	$SCRIPTDIR/browserstacklocal-start
 fi
 
-export BROWSERBIN=$BROWSERBIN
+export BROWSERBIN="$BROWSERBIN"
 # Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
 BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
 export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
