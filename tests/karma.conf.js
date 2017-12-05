@@ -30,7 +30,7 @@ module.exports = function(config) {
       version: process.env.BVER,
       prerun: {
         executable: 'http://localhost:5000/edge-setup/EdgeSetup.exe',
-        background: true,
+        background: false,
         timeout: 120,
       }
     }
