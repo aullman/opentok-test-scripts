@@ -26,7 +26,7 @@ if [ ! -n "$BROWSERBIN" ]; then
 		esac
 	else
 		# We can't install ie on Travis
-		if [ $BROWSER != 'ie' ]; then
+		if [ "$BROWSER" != 'ie' ] && [ "$BROWSER" != 'electron' ]; then
 			BROWSERBIN=$BINDIR/$BROWSER-$BVER
 		fi
 	fi
@@ -45,10 +45,12 @@ if [ -n "$BROWSERSTACK" ]; then
 	$SCRIPTDIR/browserstacklocal-start
 fi
 
-export BROWSERBIN=$BROWSERBIN
-# Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
-BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
-export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
+if [ "$BROWSER" != 'electron' ]; then
+  export BROWSERBIN="$BROWSERBIN"
+  # Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
+  BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
+  export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
+fi
 
 unit=0
 if [ -n "$UNIT_CMD" ]; then
