@@ -12,7 +12,7 @@ mkdir $BUILD
 
 echo "Creating install.cmd file"
 echo '@echo off' > $BUILD/install.cmd
-echo 'runas /user:Administrator "reg add \"HKLM\Software\Microsoft\MicrosoftEdge\MediaCapture\" /v EnableConsentPrompt /t REG_DWORD /d 0 /f"' >> $BUILD/install.cmd
+echo 'reg add "HKLM\Software\Microsoft\MicrosoftEdge\MediaCapture" /v EnableConsentPrompt /t REG_DWORD /d 0 /f' >> $BUILD/install.cmd
 
 if [ $BUNDLE_MANYCAM != 'false' ]; then
   echo 'ManyCamSetup.exe /S' >> $BUILD/install.cmd
