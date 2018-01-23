@@ -1,5 +1,6 @@
 language: node_js
 dist: trusty
+sudo: required
 node_js:
 - '7'
 before_install:
@@ -19,38 +20,27 @@ addons:
 matrix:
   include:
     - os: linux
-      sudo: false
       env: BROWSER=chrome  BVER=stable
     - os: linux
-      sudo: false
       env: BROWSER=chrome  BVER=beta
     - os: linux
-      sudo: false
       env: BROWSER=chrome  BVER=unstable
     - os: linux
-      sudo: false
       env: BROWSER=chrome BVER=54.0.2840.71
     - os: linux
-      sudo: false
       env: BROWSER=firefox BVER=stable INTEGRATION_CMD=''
     - os: linux
-      sudo: false
       env: BROWSER=firefox BVER=beta INTEGRATION_CMD=''
     - os: linux
-      sudo: false
       env: BROWSER=firefox BVER=unstable INTEGRATION_CMD=''
     - os: linux
-      sudo: false
       env: BROWSER=firefox BVER=46.0.1
     - os: linux
-      sudo: false
       env: BROWSER=ie BVER=11 SAUCELABS=true
     - os: osx
-      sudo: required
       osx_image: xcode9
       env: BROWSER=safari BVER=stable INTEGRATION_CMD=''
     - os: osx
-      sudo: required
       osx_image: xcode9
       env: BROWSER=safari BVER=unstable INTEGRATION_CMD=''
 
@@ -58,13 +48,10 @@ matrix:
 
   allow_failures:
   - os: linux
-    sudo: false
     env: BROWSER=chrome  BVER=unstable
   - os: linux
-    sudo: false
     env: BROWSER=firefox BVER=unstable INTEGRATION_CMD=''
   - os: osx
-    sudo: required
     osx_image: xcode9
     env: BROWSER=safari BVER=stable INTEGRATION_CMD=''
 
