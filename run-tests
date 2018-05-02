@@ -48,12 +48,12 @@ fi
 if [ "$BROWSER" != 'electron' ]; then
   # Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
 	if [ "$BROWSER" == 'safari' ] && [ "$BVER" == 'stable' ]; then
-	  # travis-multirunner is not creating the sym link properly for the default Safari, so we just set the default path for now
-		export SAFARI_BIN="/Applications/Safari.app/Contents/MacOS/Safari"
+    # travis-multirunner is not creating the sym link properly for the default Safari, so we just set the default path for now
+    export SAFARI_BIN="/Applications/Safari.app/Contents/MacOS/Safari"
 	else
-	  export BROWSERBIN="$BROWSERBIN"
-	  BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
-  	export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
+    export BROWSERBIN="$BROWSERBIN"
+    BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
+    export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
 	fi
 fi
 
