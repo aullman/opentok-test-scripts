@@ -47,10 +47,9 @@ fi
 
 if [ "$BROWSER" != 'electron' ] && [ "$BROWSER" != 'safari' ]; then
   export BROWSERBIN="$BROWSERBIN"
-	# Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
+  # Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
   BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
   export ${BROWSER_UPPER}_BIN="$BROWSERBIN"
-  fi
 fi
 
 unit=0
