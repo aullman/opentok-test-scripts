@@ -45,7 +45,7 @@ if [ -n "$BROWSERSTACK" ]; then
 	$SCRIPTDIR/browserstacklocal-start
 fi
 
-if [ "$BROWSER" != 'electron' ] && [ "$BROWSER" != 'safari' ]; then
+if [ "$BROWSER" == 'chrome' ] || [ "$BROWSER" == 'firefox' ]; then
   export BROWSERBIN="$BROWSERBIN"
   # Karma uses ${BROWSER}_BIN, eg. CHROME_BIN, to override the path to the browser
   BROWSER_UPPER=$(echo "$BROWSER" | tr '[:lower:]' '[:upper:]')
