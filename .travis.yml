@@ -46,7 +46,7 @@ matrix:
       env: BROWSER=safari BVER=unstable INTEGRATION_CMD=''
     - os: linux
       sudo: false
-      env: BROWSER=edge BVER='17.17134' SAUCELABS=true INTEGRATION_CMD=''
+      env: BROWSER=edge BVER='17.17134' SAUCELABS=true
 
   fast_finish: true
 
@@ -55,6 +55,9 @@ matrix:
     env: BROWSER=chrome  BVER=unstable
   - os: linux
     env: BROWSER=firefox BVER=unstable INTEGRATION_CMD=''
+  - os: linux
+    sudo: false
+    env: BROWSER=edge BVER='17.17134' SAUCELABS=true
 
 env:
   global:
