@@ -6,3 +6,5 @@
 /browserstack-local-saucey.pid
 /plugin-installer/SauceLabsInstaller.exe
 /plugin-installer/installer
+/edge-setup/installer
+/edge-setup/EdgeSetup.exe

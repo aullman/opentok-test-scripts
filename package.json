@@ -53,6 +53,7 @@
     "karma-safari-launcher": "^1.0.0",
     "karma-safaritechpreview-launcher": "0.0.6",
     "karma-sauce-launcher": "^0.3.0",
+    "lodash.merge": "^4.6.0",
     "protractor": "^4.0.9",
     "protractor-flake": "^2.5.1",
     "q": "^1.4.1"

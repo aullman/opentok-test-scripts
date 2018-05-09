@@ -22,6 +22,17 @@ module.exports = function(config) {
         'media.navigator.streams.fake': true,
         'app.update.enabled': false,
       }
+    },
+    edge: {
+      base: 'SauceLabs',
+      browserName: 'MicrosoftEdge',
+      platform: 'Windows 10',
+      version: process.env.BVER,
+      prerun: {
+        executable: 'http://localhost:5000/edge-setup/EdgeSetup.exe',
+        background: false,
+        timeout: 120,
+      }
     }
   };
   var browser;
@@ -31,7 +42,7 @@ module.exports = function(config) {
     browser = process.env.BROWSER || 'chrome';
   }
   config.set({
-    hostname: '127.0.0.1',
+    hostname: process.env.BROWSER === 'safari' ? '127.0.0.1' : 'localhost',
     basePath: '../',
 
     files: [

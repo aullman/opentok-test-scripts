@@ -1,22 +1,31 @@
-function getCapabilitiesFor(browserName, version) {
-  var base = {
-    'tunnel-identifier' : process.env.TRAVIS_JOB_NUMBER,
-    'name': browserName + version + '-' + process.env.TRAVIS_BRANCH + '-' +
-      process.env.TRAVIS_PULL_REQUEST,
-    'build': process.env.TRAVIS_BUILD_NUMBER,
-    'prerun': {
-      'executable': 'http://localhost:5000/plugin-installer/SauceLabsInstaller.exe',
-      'background': false
-    }
-  };
-  // Sauce Labs Supports IE 10 on Windows 8 and IE 11 on Windows 8.1
-  base.platform = version === '10' ? 'Windows 8' : 'Windows 8.1';
-  base.browserName = browserName === 'ie' ? 'internet explorer' : browserName;
-  base.version = version;
-  return base;
-}
+const merge = require('lodash.merge');
+const helper = require('./firefox-helper.js');
 
-var config = {
+const sauceSettings = {
+  sauceUser: process.env.SAUCE_USERNAME,
+  sauceKey: process.env.SAUCE_ACCESS_KEY,
+  capabilities: {
+    'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+    name: process.env.BROWSER + '-' +
+      process.env.TRAVIS_BRANCH + '-' + process.env.TRAVIS_PULL_REQUEST,
+    build: process.env.TRAVIS_BUILD_NUMBER
+  }
+};
+
+const ieCapabilities = {
+  capabilities: {
+    prerun: {
+      executable: 'http://localhost:5000/plugin-installer/SauceLabsInstaller.exe',
+      background: false
+    },
+    // Sauce Labs Supports IE 10 on Windows 8 and IE 11 on Windows 8.1
+    platform: process.env.BVER === '10' ? 'Windows 8' : 'Windows 8.1',
+    browserName: 'internet explorer',
+    version: process.env.BVER,
+  }
+};
+
+let config = {
   allScriptsTimeout: 30000,
   specs: [
     'integration/example.js'
@@ -30,25 +39,38 @@ var config = {
 
 switch(process.env.BROWSER) {
   case 'ie':
-    config.sauceUser = process.env.SAUCE_USERNAME;
-    config.sauceKey = process.env.SAUCE_ACCESS_KEY;
-    config.capabilities = getCapabilitiesFor(process.env.BROWSER, process.env.BVER);
+    merge(config, sauceSettings);
+    merge(config, ieCapabilities);
   break;
   case 'firefox':
-    var helper = require('./firefox-helper.js');
     config.getMultiCapabilities = helper.getFirefoxProfile;
     config.directConnect = true;
     config.firefoxPath = process.env.BROWSERBIN;
   break;
+  case 'edge':
+    merge(config, sauceSettings);
+    merge(config, {
+      capabilities: {
+        browserName: 'MicrosoftEdge',
+        platform: 'Windows 10',
+        version: process.env.BVER,
+        prerun: {
+          executable: 'http://localhost:5000/edge-setup/EdgeSetup.exe',
+          background: true,
+          timeout: 120
+        }
+      }
+    });
+  break;
   default:
   case 'chrome':
     config.capabilities = {
-        'browserName': 'chrome',
-        'chromeOptions': {
-          'args': ['auto-select-desktop-capture-source="Entire screen"',
+        browserName: 'chrome',
+        chromeOptions: {
+          args: ['auto-select-desktop-capture-source="Entire screen"',
             'use-fake-device-for-media-stream',
             'use-fake-ui-for-media-stream'],
-          'binary': process.env.BROWSERBIN
+          binary: process.env.BROWSERBIN
         }
       };
     config.directConnect = true;
