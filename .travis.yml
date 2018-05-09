@@ -51,9 +51,6 @@ matrix:
     env: BROWSER=chrome  BVER=unstable
   - os: linux
     env: BROWSER=firefox BVER=unstable INTEGRATION_CMD=''
-  - os: osx
-    osx_image: xcode9
-    env: BROWSER=safari BVER=stable INTEGRATION_CMD=''
 
 env:
   global:
