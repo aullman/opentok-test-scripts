@@ -21,7 +21,7 @@ echo "Restarting Microsoft Edge..."
 
 Stop-Process -Name "MicrosoftEdge"
 Stop-Process -Name "MicrosoftEdgeCP"
-Start-Sleep -s 10
+Start-Sleep -s 100
 Start-Process -FilePath "MicrosoftEdge" -Wait -WindowStyle Maximized
 
 echo "Success!"
