@@ -17,4 +17,11 @@ sudo New-Item -Path $registryPath -Force | Out-Null
 sudo New-Item -Path $registryPathItem -Force | Out-Null    
 sudo New-ItemProperty -Path $registryPathItem -Name $name -Value $value -PropertyType DWORD -Force | Out-Null
 
+echo "Restarting Microsoft Edge..."
+
+Stop-Process -Name "MicrosoftEdge"
+Stop-Process -Name "MicrosoftEdgeCP"
+Start-Sleep -s 10
+Start-Process -FilePath "MicrosoftEdge" -Wait -WindowStyle Maximized
+
 echo "Success!"
