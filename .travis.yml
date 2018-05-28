@@ -47,6 +47,10 @@ matrix:
     - os: linux
       sudo: false
       env: BROWSER=edge BVER='17.17134' SAUCELABS=true
+    - os: osx
+      addons:
+        firefox: "latest"
+      env: BROWSER=firefox BVER=stable
 
   fast_finish: true
 

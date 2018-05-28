@@ -14,8 +14,8 @@ if [ -z $BVER ]; then
 fi
 
 if [ ! -n "$BROWSERBIN" ]; then
-	if [ -z $TRAVIS ]; then
-		echo "No TRAVIS env variable, we must be running locally. Assuming OSX."
+	if [[ $OSTYPE == darwin* ]]; then
+		echo "We are running on Mac OS let's check if the browsers are already installed"
 		case ${BROWSER}-${BVER} in
 			chrome-stable) BROWSERBIN="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";;
 			chrome-beta) BROWSERBIN="/Applications/Google Chrome Beta.app/Contents/MacOS/Google Chrome";;
@@ -33,6 +33,8 @@ if [ ! -n "$BROWSERBIN" ]; then
 fi
 
 if [ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ] && [ ! -n "$SAUCELABS" ] && [ ! -n "$BROWSERSTACK" ]; then
+	# If the browser isn't already installed then we install it using travis multirunner
+	# Travis multirunner also handles setting up Safari to allow camera access and fake devices
 	echo "Installing browser using travis multirunner."
 	./node_modules/travis-multirunner/setup.sh
 fi
