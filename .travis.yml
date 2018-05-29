@@ -50,7 +50,7 @@ matrix:
     - os: osx
       addons:
         firefox: "latest"
-      env: BROWSER=firefox BVER=stable
+      env: BROWSER=firefox BVER=stable INTEGRATION_CMD=''
 
   fast_finish: true
 
