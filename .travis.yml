@@ -6,7 +6,7 @@ node_js:
 before_install:
 - export DISPLAY=:99.0
 - if [ -f /etc/init.d/xvfb ]; then sh -e /etc/init.d/xvfb start; fi
-- if [ $BROWSER == 'firefox' ]; then pulseaudio --start; fi
+- if [ -x "$(command -v pulseaudio)" ] && [ "$BROWSER" == "firefox" ]; then pulseaudio --start; fi
 before_script:
 - npm start > /dev/null &
 - if [ "$BROWSER" = "ie" ]; then ./plugin-installer/packageSauceLabsInstaller.sh https://tbdev.tokbox.com/v2; fi
@@ -47,6 +47,10 @@ matrix:
     - os: linux
       sudo: false
       env: BROWSER=edge BVER='17.17134' SAUCELABS=true
+    - os: osx
+      addons:
+        firefox: "latest"
+      env: BROWSER=firefox BVER=stable INTEGRATION_CMD=''
 
   fast_finish: true
 
