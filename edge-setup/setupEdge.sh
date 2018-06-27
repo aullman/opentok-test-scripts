@@ -6,13 +6,26 @@ else
   BUNDLE_MANYCAM=true
 fi
 
+if [ -n "$2" ]; then
+  DOMAIN=$2
+else
+  DOMAIN=localhost
+fi
+
+if [ -n "$3" ]; then
+  PORT=$3
+else
+  PORT=9876
+fi
+
 SCRIPTDIR=$(dirname $0)
 BUILD=$SCRIPTDIR/installer
 mkdir $BUILD
 
 echo "Creating install.cmd file"
-echo '@echo off' > $BUILD/install.cmd
-echo 'reg add "HKLM\Software\Microsoft\MicrosoftEdge\MediaCapture" /v EnableConsentPrompt /t REG_DWORD /d 0 /f' >> $BUILD/install.cmd
+cp install.cmd $BUILD/install.cmd
+sed -i '' -e "s/{DOMAIN}/$DOMAIN/g"  $BUILD/install.cmd
+sed -i '' -e "s/{PORT}/$PORT/g"  $BUILD/install.cmd
 
 if [ $BUNDLE_MANYCAM != 'false' ]; then
   echo 'ManyCamSetup.exe /S' >> $BUILD/install.cmd
