@@ -22,13 +22,13 @@ SCRIPTDIR=$(dirname $0)
 BUILD=$SCRIPTDIR/installer
 mkdir $BUILD
 
-echo "Updating allowDomain.cmd file"
-cp $SCRIPTDIR/allowDomain.cmd $BUILD/allowDomain.cmd
-sed -i '' -e "s/{DOMAIN}/$DOMAIN/g"  $BUILD/allowDomain.cmd
-sed -i '' -e "s/{PORT}/$PORT/g"  $BUILD/allowDomain.cmd
+echo "Updating install.cmd file"
+cp $SCRIPTDIR/install.cmd $BUILD/install.cmd
+sed -i -e "s/{DOMAIN}/$DOMAIN/g"  $BUILD/install.cmd
+sed -i -e "s/{PORT}/$PORT/g"  $BUILD/install.cmd
 
 if [ $BUNDLE_MANYCAM != 'false' ]; then
-  echo 'ManyCamSetup.exe /S' > $BUILD/install.cmd
+  echo '.\ManyCamSetup.exe /S' >> $BUILD/install.cmd
 fi
 
 cp $SCRIPTDIR/ManyCamSetup.exe $BUILD/
@@ -50,6 +50,6 @@ fi
 
 if [ $BUNDLE_MANYCAM != 'false' ]; then
   $RAR_CMD a -iadm -r -sfx"../../plugin-installer/Win64.SFX" -z"../../plugin-installer/xfs.conf" EdgeSetup.exe ManyCamSetup.exe install.cmd
+else
+  $RAR_CMD a -iadm -r -sfx"../../plugin-installer/Win64.SFX" -z"../../plugin-installer/xfs.conf" EdgeSetup.exe install.cmd
 fi
-
-$RAR_CMD a -iadm -r -sfx"../../plugin-installer/Win64.SFX" -z"../../plugin-installer/xfs.conf" ../EdgeSetup.zip EdgeSetup.exe allowDomain.cmd
