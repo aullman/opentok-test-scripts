@@ -49,7 +49,7 @@ if ! type "$RAR_CMD" > /dev/null; then
 fi
 
 if [ $BUNDLE_MANYCAM != 'false' ]; then
-  $RAR_CMD a -iadm -r -sfx"../../plugin-installer/Win64.SFX" -z"../../plugin-installer/xfs.conf" EdgeSetup.exe ManyCamSetup.exe install.cmd
+  $RAR_CMD a -iadm -r -sfx"../../plugin-installer/Win64.SFX" -z"../../plugin-installer/xfs.conf" ../EdgeSetup.exe ManyCamSetup.exe install.cmd
 else
-  $RAR_CMD a -iadm -r -sfx"../../plugin-installer/Win64.SFX" -z"../../plugin-installer/xfs.conf" EdgeSetup.exe install.cmd
+  $RAR_CMD a -iadm -r -sfx"../../plugin-installer/Win64.SFX" -z"../../plugin-installer/xfs.conf" ../EdgeSetup.exe install.cmd
 fi

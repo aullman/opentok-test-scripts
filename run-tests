@@ -72,4 +72,4 @@ fi
 $SCRIPTDIR/sauceconnect-stop
 $SCRIPTDIR/browserstacklocal-stop
 
-exit $(( $unit || $integration || $interop ))
+exit $(( $unit || $integration ))
