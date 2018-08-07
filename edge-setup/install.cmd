@@ -16,8 +16,8 @@ $domainArray = $domains.split(',')
 
 for ($i = 0; $i -lt $domainArray.Count ; $i++) {
   # Add domain to Windows Registry
-  echo "Adding domain to Windows registry..."
   $name = $domainArray[$i]
+  echo "Adding $name to Windows registry..."
   sudo New-ItemProperty -Path $registryPathItem -Name $name -Value $value -PropertyType DWORD -Force | Out-Null
 }
 
