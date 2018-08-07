@@ -32,7 +32,8 @@ if [ ! -n "$BROWSERBIN" ]; then
 	fi
 fi
 
-if [ "$BROWSER" == "safari" ] || ([ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ] && [ ! -n "$SAUCELABS" ] && [ ! -n "$BROWSERSTACK" ]); then
+
+if [ "$BROWSER" == "safari" ] || ([ -n "$BROWSERBIN" ] && [ ! -x $BROWSERBIN ] && [ ! -n "$SAUCELABS" ] && [ ! -n "$BROWSERSTACK" ] && [ "$BROWSER" != 'edge' ]); then
 	# If the browser isn't already installed then we install it using travis multirunner
 	# Travis multirunner also handles setting up Safari to allow camera access and fake devices
 	echo "Installing browser using travis multirunner."
