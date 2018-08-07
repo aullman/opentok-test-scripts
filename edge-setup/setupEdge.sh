@@ -7,15 +7,9 @@ else
 fi
 
 if [ -n "$2" ]; then
-  DOMAIN=$2
+  DOMAINS=$2
 else
-  DOMAIN=localhost
-fi
-
-if [ -n "$3" ]; then
-  PORT=$3
-else
-  PORT=9876
+  DOMAINS="http://localhost:9876,http://localhost:5000"
 fi
 
 SCRIPTDIR=$(dirname $0)
@@ -24,8 +18,7 @@ mkdir $BUILD
 
 echo "Updating install.cmd file"
 cp $SCRIPTDIR/install.cmd $BUILD/install.cmd
-sed -i -e "s/{DOMAIN}/$DOMAIN/g"  $BUILD/install.cmd
-sed -i -e "s/{PORT}/$PORT/g"  $BUILD/install.cmd
+sed -i -e "s/{DOMAINS}/$DOMAINS/g"  $BUILD/install.cmd
 
 if [ $BUNDLE_MANYCAM != 'false' ]; then
   echo '.\ManyCamSetup.exe /S' >> $BUILD/install.cmd

@@ -10,7 +10,7 @@ before_install:
 before_script:
 - npm start > /dev/null &
 - if [ "$BROWSER" = "ie" ]; then ./plugin-installer/packageSauceLabsInstaller.sh https://tbdev.tokbox.com/v2; fi
-- if [ "$BROWSER" = "edge" ]; then ./edge-setup/setupEdge.sh true; fi
+- if [ "$BROWSER" = "edge" ]; then ./edge-setup/setupEdge.sh true "http://localhost:9876,http://localhost:5000"; fi
 addons:
   apt:
     sources:
