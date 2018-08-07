@@ -69,13 +69,6 @@ if [ -n "$INTEGRATION_CMD" ]; then
 	integration=$?
 fi
 
-interop=0
-if [ -n "$INTEROP_CMD" ]; then
-	echo "Running Interoperability Test Command: $INTEROP_CMD for $BROWSER"
-	eval $INTEROP_CMD
-	interop=$?
-fi
-
 $SCRIPTDIR/sauceconnect-stop
 $SCRIPTDIR/browserstacklocal-stop
 
