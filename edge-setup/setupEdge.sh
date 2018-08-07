@@ -9,14 +9,14 @@ fi
 if [ -n "$2" ]; then
   DOMAINS=$2
 else
-  DOMAINS="http://localhost:9876,http://localhost:5000"
+  DOMAINS="http:\/\/localhost:9876,http:\/\/localhost:5000"
 fi
 
 SCRIPTDIR=$(dirname $0)
 BUILD=$SCRIPTDIR/installer
 mkdir $BUILD
 
-echo "Updating install.cmd file"
+echo "Updating install.cmd file with ${DOMAINS}"
 cp $SCRIPTDIR/install.cmd $BUILD/install.cmd
 sed -i -e "s/{DOMAINS}/$DOMAINS/g"  $BUILD/install.cmd
 
