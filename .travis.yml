@@ -62,6 +62,9 @@ matrix:
   - os: linux
     sudo: false
     env: BROWSER=edge BVER='17.17134' SAUCELABS=true
+  - os: osx
+    osx_image: xcode9
+    env: BROWSER=safari BVER=unstable INTEGRATION_CMD=''
 
 env:
   global:
