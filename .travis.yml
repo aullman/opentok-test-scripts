@@ -10,7 +10,7 @@ before_install:
 before_script:
 - npm start > /dev/null &
 - if [ "$BROWSER" = "ie" ]; then ./plugin-installer/packageSauceLabsInstaller.sh https://tbdev.tokbox.com/v2; fi
-- if [ "$BROWSER" = "edge" ]; then ./edge-setup/setupEdge.sh false; fi
+- if [ "$BROWSER" = "edge" ]; then ./edge-setup/setupEdge.sh true "http:\/\/localhost:9876,http:\/\/localhost:5000"; fi
 addons:
   apt:
     sources:
@@ -59,9 +59,9 @@ matrix:
     env: BROWSER=chrome  BVER=unstable
   - os: linux
     env: BROWSER=firefox BVER=unstable INTEGRATION_CMD=''
-  - os: linux
-    sudo: false
-    env: BROWSER=edge BVER='17.17134' SAUCELABS=true
+  - os: osx
+    osx_image: xcode9
+    env: BROWSER=safari BVER=unstable INTEGRATION_CMD=''
 
 env:
   global:
